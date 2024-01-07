@@ -1,7 +1,8 @@
 "use client";
 
-// @ts-nocheck
+// @ts-ignore
 import useSound from "use-sound";
+// @ts-ignore
 import { useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";

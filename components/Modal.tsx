@@ -1,4 +1,6 @@
+// @ts-ignore
 import * as Dialog from '@radix-ui/react-dialog';
+// @ts-ignore
 import { IoMdClose } from 'react-icons/io';
 
 interface ModalProps {
