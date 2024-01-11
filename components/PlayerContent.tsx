@@ -132,7 +132,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               cursor-pointer
             "
           >
-            <Icon size={30} className="text-black" />
+            <Icon size={30} className="text-purple-400" />
           </div>
         </div>
 
@@ -170,9 +170,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               bg-white 
               p-1 
               cursor-pointer
+              hover:bg-purple-100
             "
           >
-            <Icon size={30} className="text-black" />
+            <Icon size={30} className="text-purple-700" />
           </div>
           <AiFillStepForward
             onClick={onPlayNext}

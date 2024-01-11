@@ -28,11 +28,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         text-md 
         font-medium
         cursor-pointer
-        hover:text-white
+        hover:text-purple-400
         transition
         text-neutral-400
         py-1`,
-        active && "text-white"
+        active && "text-purple-300 bg-purple-950 rounded-md"
         )
       }
     >

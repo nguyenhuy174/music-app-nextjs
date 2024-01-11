@@ -77,7 +77,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success('Favorited!');
+        toast.success('Favorite!');
       }
     }
 
