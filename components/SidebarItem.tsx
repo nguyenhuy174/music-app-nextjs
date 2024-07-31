@@ -25,6 +25,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         items-center 
         w-full 
         gap-x-4 
+        pl-2
         text-md 
         font-medium
         cursor-pointer
