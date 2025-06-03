@@ -15,7 +15,7 @@ const font = Figtree({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Hoshizora Music',
-  description: 'Relaxing with music',
+  description: 'Enjoy Wonderful Music',
 }
 
 export const revalidate = 0;
