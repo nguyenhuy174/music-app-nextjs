@@ -108,7 +108,7 @@ const UploadModal = () => {
       
       router.refresh();
       setIsLoading(false);
-      toast.success('Song uploaded successfully!');
+      toast.success('Song upload successful!');
       reset();
       uploadModal.onClose();
     } catch (error) {
@@ -142,7 +142,7 @@ const UploadModal = () => {
           placeholder="Singer name"
         />
         <div>
-          <div className="pb-1 text-purple-300">
+          <div className="pb-1 text-cyan-300">
             Select an mp3 file
           </div>
           <Input
@@ -155,7 +155,7 @@ const UploadModal = () => {
           />
         </div>
         <div>
-          <div className="pb-1 text-purple-300">
+          <div className="pb-1 text-cyan-300">
             Select a thumbnail image
           </div>
           <Input

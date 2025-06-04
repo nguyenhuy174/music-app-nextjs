@@ -54,8 +54,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         backgroundImage: "url('/images/header-bg.jpg')",
       }}
     >
-      <div className="absolute inset-0 bg-black/50 z-0" />
-
+      <div className="absolute inset-0 bg-black/20 z-0" />
       <div className="relative z-10">
         <div className="w-full mb-4 flex items-center justify-between">
           <div className="hidden md:flex gap-x-2 items-center">
@@ -123,7 +122,6 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             )}
           </div>
         </div>
-
         {children}
       </div>
     </div>

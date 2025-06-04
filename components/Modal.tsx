@@ -23,6 +23,7 @@ const Modal: React.FC<ModalProps> = ({
       <Dialog.Portal>
         <Dialog.Overlay
           className="
+            z-40
             bg-neutral-900/90 
             backdrop-blur-sm 
             fixed 
@@ -31,6 +32,7 @@ const Modal: React.FC<ModalProps> = ({
         />
         <Dialog.Content
           className="
+            z-50
             fixed 
             drop-shadow-md 
             border 
