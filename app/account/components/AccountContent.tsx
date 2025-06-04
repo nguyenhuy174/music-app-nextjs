@@ -48,15 +48,15 @@ const AccountContent = () => {
       </div>
       )}
       {subscription && (
-        <div className="flex flex-col gap-y-4 text-xl">
+        <div className="flex flex-col gap-y-4 text-xl mt-4">
           <p>You are currently on the 
-            <b className="text-purple-400"> {subscription?.prices?.products?.name} </b> 
+            <b className="text-cyan-400"> {subscription?.prices?.products?.name} </b> 
             plan.
           </p>
           <Button
             disabled={loading || isLoading}
             onClick={redirectToCustomerPortal}
-            className="w-[500px]"
+            className="w-full max-w-[400px] sm:w-auto"
           >
             Open subscription information
           </Button>
