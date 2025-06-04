@@ -56,7 +56,7 @@ const ListItem: React.FC<ListItemProps> = ({
           alt="Image"
         />
       </div>
-      <p className="font-medium truncate py-5">
+      <p className="font-semibold truncate py-5 group-hover:text-purple-400">
         {name}
       </p>
       <div 
@@ -68,7 +68,9 @@ const ListItem: React.FC<ListItemProps> = ({
           flex 
           items-center 
           justify-center 
-          bg-purple-500 
+          bg-gradient-to-tr
+          from-purple-500
+          to-black
           p-4 
           drop-shadow-md 
           right-5
@@ -76,7 +78,7 @@ const ListItem: React.FC<ListItemProps> = ({
           hover:scale-110
         "
       >
-        <FaPlay className="text-black" />
+        <FaPlay className="text-cyan-400" />
       </div>
     </button>
    );

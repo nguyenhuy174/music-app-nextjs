@@ -31,6 +31,8 @@ const LikedContent: React.FC<LikedContentProps> = ({
     return (
       <div 
         className="
+          text-lg
+          mt-4
           flex 
           flex-col 
           gap-y-2 

@@ -27,7 +27,7 @@ export default async function Home() {
               text-3xl 
               font-semibold
               animate-pulse 
-              text-purple-300
+              text-cyan-200
             ">
               Welcome to Hoshizora Music
           </h1>
@@ -53,7 +53,7 @@ export default async function Home() {
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
           <h1 className="text-white text-2xl font-semibold">
-            Newest songs
+            New songs
           </h1>
         </div>
         <PageContent songs={songs} />

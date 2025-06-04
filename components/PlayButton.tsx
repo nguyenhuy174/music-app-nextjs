@@ -10,7 +10,9 @@ const PlayButton = () => {
         flex 
         items-center 
         justify-center 
-        bg-purple-500 
+        bg-gradient-to-tr
+        from-slate-900
+        to-slate-600
         p-4 
         drop-shadow-md 
         translate
@@ -20,7 +22,7 @@ const PlayButton = () => {
         hover:scale-110
       "
     >
-      <FaPlay className="text-black" />
+      <FaPlay className="text-cyan-400" />
     </button>
    );
 }
