@@ -45,8 +45,9 @@ const Header: React.FC<HeaderProps> = ({
     <div
       className={twMerge(`
         h-fit 
-        bg-gradient-to-b 
-        from-purple-900 
+        bg-gradient-to-tr
+      from-gray-800
+      to-slate-950
         p-6
         `,
         className
@@ -62,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({
               items-center 
               justify-center 
               cursor-pointer 
-              hover:opacity-75 
+              hover:opacity-65 
               transition
             "
           >
@@ -77,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
               items-center 
               justify-center 
               cursor-pointer 
-              hover:opacity-75 
+              hover:opacity-65 
               transition
             "
           >
@@ -141,7 +142,7 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={authModal.onOpen} 
                   className="
                     bg-transparent 
-                    text-neutral-300 
+                    text-white
                     font-medium
                   "
                 >

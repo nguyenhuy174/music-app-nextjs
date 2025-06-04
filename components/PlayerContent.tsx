@@ -102,7 +102,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
   return ( 
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
         <div className="flex w-full justify-start">
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-6">
             <MediaItem data={song} />
             <LikeButton songId={song.id} />
           </div>
@@ -132,7 +132,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               cursor-pointer
             "
           >
-            <Icon size={30} className="text-purple-400" />
+            <Icon size={30} className="text-black" />
           </div>
         </div>
 
@@ -152,9 +152,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             onClick={onPlayPrevious}
             size={30} 
             className="
-              text-purple-400 
+              text-white 
               cursor-pointer 
-              hover:text-white 
+              hover:scale-125
               transition
             "
           />
@@ -170,18 +170,19 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               bg-white 
               p-1 
               cursor-pointer
-              hover:bg-purple-100
+              hover:scale-125
+              transition
             "
           >
-            <Icon size={30} className="text-purple-700" />
+            <Icon size={30} className="text-black" />
           </div>
           <AiFillStepForward
             onClick={onPlayNext}
             size={30} 
             className="
-            text-purple-400  
+            text-white  
               cursor-pointer 
-              hover:text-white 
+              hover:scale-125
               transition
             " 
           />
@@ -191,7 +192,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           <div className="flex items-center gap-x-2 w-[120px]">
             <VolumeIcon 
               onClick={toggleMute} 
-              className="cursor-pointer hover:text-purple-400" 
+              className="cursor-pointer hover:scale-125 transition" 
               size={34} 
             />
             <Slider 

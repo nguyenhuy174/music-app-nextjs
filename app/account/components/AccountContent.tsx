@@ -62,6 +62,14 @@ const AccountContent = () => {
           </Button>
         </div>
       )}
+      <div className="flex flex-col mt-4 text-yellow-200 text-base">
+        <p>
+          Testing purposes only. 
+        </p>
+        <p>
+          No real payment card is required, you can use any 16-digit number as a card number.
+      </p>
+      </div>
     </div>
   );
 }

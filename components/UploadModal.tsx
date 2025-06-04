@@ -70,7 +70,7 @@ const UploadModal = () => {
 
       if (songError) {
         setIsLoading(false);
-        return toast.error('Song upload failed');
+        return toast.error('Song upload failed!');
       }
 
       // Upload image
@@ -87,7 +87,7 @@ const UploadModal = () => {
 
       if (imageError) {
         setIsLoading(false);
-        return toast.error('Failed image upload');
+        return toast.error('Image upload failed!');
       }
 
       
@@ -112,7 +112,7 @@ const UploadModal = () => {
       reset();
       uploadModal.onClose();
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error('Something went wrong!');
     } finally {
       setIsLoading(false);
     }
@@ -121,7 +121,7 @@ const UploadModal = () => {
   return (
     <Modal
       title="UPLOAD A SONG"
-      description="Upload an mp3 file"
+      description="Note: Only mp3 file is supported"
       isOpen={uploadModal.isOpen}
       onChange={onChange}
     >
@@ -156,7 +156,7 @@ const UploadModal = () => {
         </div>
         <div>
           <div className="pb-1 text-purple-300">
-            Select an image
+            Select a thumbnail image
           </div>
           <Input
             placeholder="test" 
