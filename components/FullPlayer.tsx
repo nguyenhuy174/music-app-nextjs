@@ -44,17 +44,24 @@ const FullPlayer: React.FC<FullPlayerProps> = ({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 left-[clamp(0.5rem,2vw,1.5rem)] text-black p-2 rounded-full bg-white/80 hover:scale-110 transition"
+          className="absolute top-4 left-4 text-black p-2 rounded-full bg-white/80 hover:scale-110 transition"
         >
           <AiOutlineClose size={20} />
         </button>
 
         {/* Song image */}
-        <img
-          src={imageUrl || "/images/music-placeholder.png"}
-          alt="song"
-          className="w-[240px] h-[240px] object-cover rounded-xl mt-16 shadow-lg mx-auto"
-        />
+        <div className="relative w-full max-w-xl mx-auto mt-16">
+          <img
+            src={imageUrl || "/images/music-placeholder.png"}
+            alt="blur-bg"
+            className="absolute inset-0 w-full h-full object-cover opacity-60 blur-2xl rounded-xl z-0"
+          />
+          <img
+            src={imageUrl || "/images/music-placeholder.png"}
+            alt="song"
+            className="relative z-10 w-[240px] h-[240px] object-cover rounded-xl shadow-lg mx-auto"
+          />
+        </div>
 
         {/* Song info + Like */}
         <div className="w-full px-6 mt-4 flex items-center justify-between">
@@ -77,7 +84,7 @@ const FullPlayer: React.FC<FullPlayerProps> = ({
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-center gap-x-6 mt-2">
+        <div className="flex items-center justify-center gap-x-6 mt-6">
           <AiFillStepBackward
             onClick={onPlayPrevious}
             size={36}

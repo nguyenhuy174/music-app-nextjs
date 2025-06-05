@@ -43,7 +43,7 @@ const ListItem: React.FC<ListItemProps> = ({
         gap-x-4 
         bg-neutral-100/10 
         cursor-pointer 
-        hover:bg-purple-900/20
+        hover:bg-purple-900/50
         transition 
         pr-4
       "
