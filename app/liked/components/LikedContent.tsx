@@ -49,9 +49,9 @@ const LikedContent: React.FC<LikedContentProps> = ({
       {songs.map((song: any) => (
         <div 
           key={song.id} 
-          className="flex items-center gap-x-4 w-full"
+          className="flex items-center justify-between gap-x-4 w-full"
         >
-          <div className="flex-1">
+          <div className="flex items-center gap-x-3 min-w-0 flex-1">
             <MediaItem onClick={(id) => onPlay(id)} data={song} />
           </div>
           <LikeButton songId={song.id} />
