@@ -14,19 +14,23 @@ import usePlayer from "@/hooks/usePlayer";
 import LikeButton from "./LikeButton";
 import MediaItem from "./MediaItem";
 import Slider from "./Slider";
+import ProgressBar from "./ProgressBar";
+import FullPlayer from "./FullPlayer";
 
 interface PlayerContentProps {
   song: Song;
   songUrl: string;
 }
 
-const PlayerContent: React.FC<PlayerContentProps> = ({ 
-  song, 
-  songUrl
-}) => {
+const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const [isFullPlayerOpen, setIsFullPlayerOpen] = useState(false);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
@@ -44,7 +48,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     }
 
     player.setId(nextSong);
-  }
+  };
 
   const onPlayPrevious = () => {
     if (player.ids.length === 0) {
@@ -59,29 +63,41 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     }
 
     player.setId(previousSong);
-  }
+  };
 
-  const [play, { pause, sound }] = useSound(
-    songUrl,
-    { 
-      volume: volume,
-      onplay: () => setIsPlaying(true),
-      onend: () => {
-        setIsPlaying(false);
-        onPlayNext();
-      },
-      onpause: () => setIsPlaying(false),
-      format: ['mp3']
-    }
-  );
+  const [play, { pause, sound }] = useSound(songUrl, {
+    volume: volume,
+    onplay: () => setIsPlaying(true),
+    onend: () => {
+      setIsPlaying(false);
+      onPlayNext();
+    },
+    onpause: () => setIsPlaying(false),
+    format: ["mp3"],
+  });
 
   useEffect(() => {
-    sound?.play();
-    
+    if (!sound) return;
+
+    sound.play();
+
+    const updateTime = () => {
+      setCurrentTime(sound.seek() || 0);
+      setDuration(sound.duration() || 0);
+    };
+
+    const interval = setInterval(updateTime, 1000);
+
     return () => {
-      sound?.unload();
-    }
+      clearInterval(interval);
+      sound.unload();
+    };
   }, [sound]);
+
+  const handleSeek = (value: number) => {
+    sound?.seek(value);
+    setCurrentTime(value);
+  };
 
   const handlePlay = () => {
     if (!isPlaying) {
@@ -89,7 +105,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     } else {
       pause();
     }
-  }
+  };
 
   const toggleMute = () => {
     if (volume === 0) {
@@ -97,19 +113,23 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     } else {
       setVolume(0);
     }
-  }
+  };
 
-  return ( 
+  return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
-        <div className="flex w-full justify-start">
-          <div className="flex items-center gap-x-10">
+      <div className="flex w-full items-center justify-start h-full">
+        <div className="flex items-center gap-x-10">
+          <div onClick={() => setIsFullPlayerOpen(true)}>
             <MediaItem data={song} />
+          </div>
+          <div className="hidden md:block">
             <LikeButton songId={song.id} />
           </div>
         </div>
+      </div>
 
-        <div 
-          className="
+      <div
+        className="
             flex 
             md:hidden 
             col-auto 
@@ -117,10 +137,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             justify-end 
             items-center
           "
-        >
-          <div 
-            onClick={handlePlay} 
-            className="
+      >
+        <div
+          onClick={handlePlay}
+          className="
               h-10
               w-10
               flex 
@@ -131,78 +151,78 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               p-1 
               cursor-pointer
             "
-          >
-            <Icon size={30} className="text-black" />
-          </div>
+        >
+          <Icon size={30} className="text-black" />
         </div>
+      </div>
 
-        <div 
-          className="
+      <div
+        className="
             hidden
             h-full
             md:flex 
+            flex-col
             justify-center 
             items-center 
             w-full 
             max-w-[722px] 
-            gap-x-6
+            gap-y-2
           "
-        >
+      >
+        <div className="flex items-center gap-x-6">
           <AiFillStepBackward
             onClick={onPlayPrevious}
-            size={30} 
-            className="
-              text-white 
-              cursor-pointer 
-              hover:scale-125
-              transition
-            "
+            size={30}
+            className="text-white cursor-pointer hover:scale-125 transition"
           />
-          <div 
-            onClick={handlePlay} 
-            className="
-              flex 
-              items-center 
-              justify-center
-              h-10
-              w-10 
-              rounded-full 
-              bg-white 
-              p-1 
-              cursor-pointer
-              hover:scale-125
-              transition
-            "
+          <div
+            onClick={handlePlay}
+            className="flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer hover:scale-125 transition"
           >
             <Icon size={30} className="text-black" />
           </div>
           <AiFillStepForward
             onClick={onPlayNext}
-            size={30} 
-            className="
-            text-white  
-              cursor-pointer 
-              hover:scale-125
-              transition
-            " 
+            size={30}
+            className="text-white cursor-pointer hover:scale-125 transition"
           />
         </div>
-
-        <div className="hidden md:flex w-full justify-end pr-2">
-          <div className="flex items-center gap-x-2 w-[120px]">
-            <VolumeIcon 
-              onClick={toggleMute} 
-              className="cursor-pointer hover:scale-125 transition" 
-              size={34} 
-            />
-            <Slider 
-              value={volume} 
-              onChange={(value) => setVolume(value)}
-            />
-          </div>
+        <div className="w-full -mt-3">
+          <ProgressBar
+            duration={duration}
+            currentTime={currentTime}
+            onSeek={handleSeek}
+          />
         </div>
       </div>
-   );
-}
- 
+
+      <div className="hidden md:flex w-full justify-end pr-2">
+        <div className="flex items-center gap-x-2 w-[120px]">
+          <VolumeIcon
+            onClick={toggleMute}
+            className="cursor-pointer hover:scale-125 transition"
+            size={34}
+          />
+          <Slider value={volume} onChange={(value) => setVolume(value)} />
+        </div>
+      </div>
+      {isFullPlayerOpen && (
+        <FullPlayer
+          song={song}
+          isPlaying={isPlaying}
+          onPlay={handlePlay}
+          onPlayNext={onPlayNext}
+          onPlayPrevious={onPlayPrevious}
+          onSeek={handleSeek}
+          duration={duration}
+          currentTime={currentTime}
+          volume={volume}
+          setVolume={setVolume}
+          onClose={() => setIsFullPlayerOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
+
 export default PlayerContent;
